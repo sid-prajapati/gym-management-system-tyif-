@@ -1,0 +1,75 @@
+<div id="main-body">
+    <div class="create-form-section">
+        <form action="/classes/add" method="post">
+            <div class="form-group">
+                <h2>To Add Class</h2>
+        <hr>
+                <h3 class="label">NAME:</h3>
+                <input type="text" name="name" id="" class="form-control" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <h3 class="label">INSTRUCTOR:</h3>
+                <select name="instructor" class="form-control" id="instructor" placeholder="instructor">
+                    <option value="0">--Select</option>
+                    {{#each instructors}}
+                     <option value="{{this.id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-primary">Create</button>
+            </div>
+        </form>
+    </div>
+    <div class="update-form-section">
+        <form  id="update_class_form">
+            <div class="form-group">
+                <h2>To Update Class</h2>
+        <hr>
+                <h3 class="label">ID:</h3>
+                <input type="number" id="updateCid" placeholder="Class Id" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <h3 class="label">NAME:</h3>
+                <input type="text" name="name" placeholder="Class name" class="form-control" id="updateCname">
+            </div>
+            <div class="form-group">
+                <h3 class="label">INSTRUCTOR:</h3>
+                <select name="instructor" id="updateCinstructor">
+                    <option value="0">--Select--</option>
+                    {{#each instructors}}
+                        <option value="{{this.id}}">{{this.name}}+"|"+{{this.speciality}} </option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="table-section">
+    <table id="class-table">
+        <h2 id="table-title">Classes</h2>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Instructor</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each classes}}
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.instructor}}</td>
+                    <td><button class="btn-alert" onclick="classedit({{this.id}})">Edit </button></td>
+                    <td><button class="btn-danger" onclick="classdel({{this.id}})">Delete</button></td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+<script src="/js/classes.js"></script>
